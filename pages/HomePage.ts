@@ -7,7 +7,7 @@ export class HomePage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.searchBox = page.locator('#twotabsearchtextbox');
+    this.searchBox = page.getByPlaceholder('Search Amazon.in');
     this.searchButton = page.locator('#nav-search-submit-button');
   }
 

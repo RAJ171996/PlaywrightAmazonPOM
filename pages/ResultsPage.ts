@@ -2,23 +2,22 @@ import { Locator, Page } from '@playwright/test';
 import { BasePage } from "../utils/BasePage";
 
 export class ResultsPage extends BasePage {
-  
-  private productTitles: Locator;
+
+  private iphone17prolink: Locator;
 
   constructor(page: Page) {
     super(page);
-    
-    this.productTitles = page.getByRole('link', { name: 'Sponsored Ad - iPhone 17 Pro 256 GB: 15.93 cm (6.3″) Display with Promotion up' });
+
+    // ✅ Dynamic locator (NOT hardcoded text)
+    this.iphone17prolink = page.locator('h2 a[href*="iPhone 17 Pro"]');
   }
 
   async selectProduct() {
 
-    const [newPage] = await Promise.all([
-      this.page.waitForEvent('popup'),
-     this.productTitles.first().click()
-    ]);
-    await newPage.locator('[id="add-to-cart-button"]').nth(1).click();
+    // ✅ Amazon opens in same tab → no popup
+    await this.iphone17prolink.first().click();
 
-    }
+    // wait for product page
+    await this.page.waitForLoadState('domcontentloaded');
   }
-
+}

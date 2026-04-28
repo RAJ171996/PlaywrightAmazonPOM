@@ -3,14 +3,15 @@ import { HomePage } from '../pages/HomePage';
 import { ResultsPage } from '../pages/ResultsPage';
 import { SelectProductPage } from '../pages/SelectProductPage';
 
-test('Amazon iPhone 17 Pro and add to cart', async ({ page }) => {
-  
-  const homePage = new HomePage(page);
-  const resultsPage = new ResultsPage(page);
-  const selectProductPage = new SelectProductPage(page);
+test('Amazon flow', async ({ page }) => {
 
-  await homePage.navigate('https://www.amazon.in/');
-  await homePage.searchProduct('iPhone 17 Pro');
-  await resultsPage.selectProduct();
-  await selectProductPage.addToCart();
+  const home = new HomePage(page);
+  const results = new ResultsPage(page);
+  const product = new SelectProductPage(page);
+
+  await home.navigate('https://www.amazon.in/');
+  await home.searchProduct('iPhone 17 Pro Max');
+
+  await results.selectProduct();
+  await product.addToCart();
 });
