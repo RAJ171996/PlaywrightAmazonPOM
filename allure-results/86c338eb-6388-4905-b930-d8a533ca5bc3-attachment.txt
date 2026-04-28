@@ -1,0 +1,2 @@
+❌ FAILED: Login failed for locked_out_user
+🔴 ERROR MESSAGE: Epic sadface: Sorry, this user has been locked out.
